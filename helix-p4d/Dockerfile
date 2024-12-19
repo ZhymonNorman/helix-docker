@@ -12,6 +12,7 @@ RUN dnf update -y && \
     dnf install -y dnf-plugins-core && \
     dnf config-manager --add-repo http://package.perforce.com/yum/rhel/8/x86_64 && \
     rpm --import https://package.perforce.com/perforce.pubkey && \
+    dnf install python -y && \
     dnf install perforce-p4python3 -y && \
     dnf clean all && \
     dnf makecache
