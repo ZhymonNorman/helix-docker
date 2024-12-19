@@ -12,6 +12,7 @@ RUN dnf update -y && \
     dnf install -y dnf-plugins-core && \
     dnf config-manager --add-repo http://package.perforce.com/yum/rhel/8/x86_64 && \
     rpm --import https://package.perforce.com/perforce.pubkey && \
+    dnf install python3 -y && \
     dnf clean all && \
     dnf makecache
 
@@ -22,7 +23,8 @@ RUN dnf update -y && \
 # Create perforce user and install Perforce Server
 # Note: You may need to adjust the version numbers for Rocky Linux compatibility
 RUN dnf install -y helix-p4d-2024.2 helix-swarm-triggers-2024.5
-
+# setup default python
+RUN ls -ls /usr/bin/python* & ls -ls /usr/local/bin/python*
 # Add external files
 COPY files/restore.sh /usr/local/bin/restore.sh
 COPY files/setup.sh /usr/local/bin/setup.sh
